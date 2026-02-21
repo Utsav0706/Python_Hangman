@@ -5,14 +5,35 @@ lives = 6
 
 print(art.logo)
 
-chosen_word = random.choice(words.word_list)
-print(chosen_word)
+chosenWord = random.choice(words.wordlist)
+print(chosenWord)
 
 placeHolder = ""
-word_length = len(chosen_word)
+wordLength = len(chosenWord)
 
-for position in range(word_length):
+for position in range(wordLength):
     placeHolder += "_"
 
 print("Word to guess: " + placeHolder)
 
+gameOver = False
+correctLetters = []
+
+while not gameOver:
+    print("**************** <????>/6 Lives Left ****************")
+
+    guess = input("Guess a letter: ").lower()
+    if guess in correctLetters:
+        print(f"You already guessed {guess}")
+
+    display = ""
+
+    for letter in chosenWord:
+        if letter == guess:
+            display += letter
+            correctLetters.append(guess)
+        elif letter in correctLetters:
+            display += letter
+        else:
+            display += "_"
+    print("Word to guess" + display)
