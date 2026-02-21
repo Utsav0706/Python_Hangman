@@ -20,7 +20,7 @@ gameOver = False
 correctLetters = []
 
 while not gameOver:
-    print("**************** <????>/6 Lives Left ****************")
+    print(f"**************** {lives}/6 Lives Left ****************")
 
     guess = input("Guess a letter: ").lower()
     if guess in correctLetters:
@@ -37,3 +37,17 @@ while not gameOver:
         else:
             display += "_"
     print("Word to guess" + display)
+
+    if guess not in chosenWord:
+        lives -= 1
+        print(f"You guessed the word {guess}, That's not in the word, You lose.... :(")
+
+        if lives == 0:
+            gameOver = True
+            print(f"*****************It was {chosenWord} :( You Lose! *****************")
+
+    if "_" not in display:
+        gameOver = True
+        print("*************** You Win! ***************")
+
+    print(art.stages[lives])
